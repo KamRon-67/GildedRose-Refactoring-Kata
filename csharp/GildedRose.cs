@@ -4,7 +4,13 @@ namespace csharp
 {
     public class GildedRose
     {
-        IList<Item> _Items;
+        public IList<Item> _Items;
+
+        public GildedRose()
+        {
+            _Items = populateList();
+        }
+
         public GildedRose(IList<Item> Items)
         {
             _Items = populateList();
