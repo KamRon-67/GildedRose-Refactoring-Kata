@@ -8,20 +8,19 @@ namespace csharp
     {
 
         [Test]
-        public void testOne()
+        public void TestOne()
         {
-            IList<Item> Items = new List<Item>();
+            var Items = new List<Item>();
             var app = new GildedRose();
             Assert.IsNotEmpty(app._Items);
         }
-
+        
         [Test]
-        public void foo()
+        public void TestTwo()
         {
-            IList<Item> Items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 0 } };
-            GildedRose app = new GildedRose(Items);
-            app.UpdateQuality();
-            Assert.AreEqual("fixme", Items[0].Name);
+            var Items = new List<Item> { new Item { Name = "testTwo", SellIn = 0, Quality = 0 } };
+            var app = new GildedRose(Items);
+            Assert.That(app._Items, Has.Exactly(1).Matches<Item>(p => p.Name == "testTwo"));
         }
     }
 }
