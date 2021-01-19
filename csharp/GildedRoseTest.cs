@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using csharp;
 using System.Collections.Generic;
 
 namespace csharp
@@ -10,7 +11,6 @@ namespace csharp
         [Test]
         public void TestOne()
         {
-            var Items = new List<Item>();
             var app = new GildedRose();
             Assert.IsNotEmpty(app._Items);
         }
@@ -18,9 +18,15 @@ namespace csharp
         [Test]
         public void TestTwo()
         {
-            var Items = new List<Item> { new Item { Name = "testTwo", SellIn = 0, Quality = 0 } };
+            var Items = new List<Item> { new Item { Name = "testTwo", SellIn = 1, Quality = 2 } };
             var app = new GildedRose(Items);
-            Assert.That(app._Items, Has.Exactly(1).Matches<Item>(p => p.Name == "testTwo"));
+            Assert.That(app._Items, Has.Exactly(1).Matches<Item>(p => p.Name == "testTwo" && p.SellIn == 1 && p.Quality == 2));
+        }
+
+        [Test]
+        public void TestThree()
+        {
+
         }
     }
 }

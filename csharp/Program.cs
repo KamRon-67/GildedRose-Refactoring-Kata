@@ -15,11 +15,13 @@ namespace csharp
             {
                 Console.WriteLine("-------- day " + i + " --------");
                 Console.WriteLine("name, sellIn, quality");
-                for (var j = 0; j < app._Items.Count; j++)
+
+                foreach(var gildedRoseItem in app._Items)
                 {
-                    System.Console.WriteLine(app._Items[j]);
+                    Console.WriteLine(gildedRoseItem.ToString());
                 }
                 Console.WriteLine("");
+
                 app.UpdateQuality();
             }
         }
