@@ -6,6 +6,15 @@ namespace csharp
     [TestFixture]
     public class GildedRoseTest
     {
+
+        [Test]
+        public void testOne()
+        {
+            IList<Item> Items = new List<Item>();
+            var app = new GildedRose();
+            Assert.IsNotEmpty(app._Items);
+        }
+
         [Test]
         public void foo()
         {
