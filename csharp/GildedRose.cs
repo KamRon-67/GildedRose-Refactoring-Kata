@@ -37,7 +37,7 @@ namespace csharp
 
                 if (ele.Name != "Sulfuras, Hand of Ragnaros")
                 {
-                    ele.SellIn = ele.SellIn - 1;
+                    ele.SellIn -= 1;
                 }
 
                 if (ele.SellIn < 0)
