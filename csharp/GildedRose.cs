@@ -24,25 +24,25 @@ namespace csharp
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < _Items.Count; i++)
+            foreach (var ele in _Items)
             {
-                if (_Items[i].Name != "Aged Brie" && _Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                if (ele.Name != "Aged Brie" && ele.Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    ifNotBackStatgeToTAFKAL80ETCConcert(_Items[i]);
+                    ifNotBackStatgeToTAFKAL80ETCConcert(ele);
                 }
                 else
                 {
-                    isBackStatgeToTAFKAL80ETCConcert(_Items[i]);
+                    isBackStatgeToTAFKAL80ETCConcert(ele);
                 }
 
-                if (_Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                if (ele.Name != "Sulfuras, Hand of Ragnaros")
                 {
-                    _Items[i].SellIn = _Items[i].SellIn - 1;
+                    ele.SellIn = ele.SellIn - 1;
                 }
 
-                if (_Items[i].SellIn < 0)
+                if (ele.SellIn < 0)
                 {
-                    notAgedBrie(_Items[i]);
+                    notAgedBrie(ele);
                 }
             }
         }
