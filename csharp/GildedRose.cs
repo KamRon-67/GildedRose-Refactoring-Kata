@@ -28,39 +28,11 @@ namespace csharp
             {
                 if (_Items[i].Name != "Aged Brie" && _Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    if (_Items[i].Quality > 0)
-                    {
-                        if (_Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            _Items[i].Quality = _Items[i].Quality - 1;
-                        }
-                    }
+                    ifNotBackStatgeToTAFKAL80ETCConcert(_Items[i]);
                 }
                 else
                 {
-                    if (_Items[i].Quality < 50)
-                    {
-                        _Items[i].Quality = _Items[i].Quality + 1;
-
-                        if (_Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (_Items[i].SellIn < 11)
-                            {
-                                if (_Items[i].Quality < 50)
-                                {
-                                    _Items[i].Quality = _Items[i].Quality + 1;
-                                }
-                            }
-
-                            if (_Items[i].SellIn < 6)
-                            {
-                                if (_Items[i].Quality < 50)
-                                {
-                                    _Items[i].Quality = _Items[i].Quality + 1;
-                                }
-                            }
-                        }
-                    }
+                    isBackStatgeToTAFKAL80ETCConcert(_Items[i]);
                 }
 
                 if (_Items[i].Name != "Sulfuras, Hand of Ragnaros")
@@ -70,30 +42,7 @@ namespace csharp
 
                 if (_Items[i].SellIn < 0)
                 {
-                    if (_Items[i].Name != "Aged Brie")
-                    {
-                        if (_Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (_Items[i].Quality > 0)
-                            {
-                                if (_Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                                {
-                                    _Items[i].Quality = _Items[i].Quality - 1;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            _Items[i].Quality = _Items[i].Quality - _Items[i].Quality;
-                        }
-                    }
-                    else
-                    {
-                        if (_Items[i].Quality < 50)
-                        {
-                            _Items[i].Quality = _Items[i].Quality + 1;
-                        }
-                    }
+                    notAgedBrie(_Items[i]);
                 }
             }
         }
@@ -114,6 +63,72 @@ namespace csharp
             };
 
             return Items;
+        }
+
+        public void notAgedBrie(Item item)
+        {
+            if (item.Name != "Aged Brie")
+            {
+                if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                {
+                    if (item.Quality > 0)
+                    {
+                        if (item.Name != "Sulfuras, Hand of Ragnaros")
+                        {
+                            item.Quality = item.Quality - 1;
+                        }
+                    }
+                }
+                else
+                {
+                    item.Quality = item.Quality - item.Quality;
+                }
+            }
+            else
+            {
+                if (item.Quality < 50)
+                {
+                    item.Quality = item.Quality + 1;
+                }
+            }
+        }
+
+        public void ifNotBackStatgeToTAFKAL80ETCConcert(Item item)
+        {
+            if (item.Quality > 0)
+            { 
+                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                {
+                    item.Quality = item.Quality - 1;
+                }
+            }
+        }
+
+        public void isBackStatgeToTAFKAL80ETCConcert(Item item)
+        {
+            if (item.Quality < 50)
+            {
+                item.Quality = item.Quality + 1;
+
+                if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                {
+                    if (item.SellIn < 11)
+                    {
+                        if (item.Quality < 50)
+                        {
+                            item.Quality = item.Quality + 1;
+                        }
+                    }
+
+                    if (item.SellIn < 6)
+                    {
+                        if (item.Quality < 50)
+                        {
+                            item.Quality = item.Quality + 1;
+                        }
+                    }
+                }
+            }
         }
     }
 }
