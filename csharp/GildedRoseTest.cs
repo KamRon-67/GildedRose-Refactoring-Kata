@@ -42,5 +42,30 @@ namespace csharp
             app.UpdateQuality();
             Assert.AreEqual(1, Items[0].Quality);
         }
+
+        [Test]
+        public void Once_The_Sell_By_Date_Has_Passed_Quality_Degrades_Twice_As_Fast()
+        {
+        }
+
+        [Test]
+        public void The_Quality_Of_An_item_Is_Never_Negative()
+        {
+        }
+
+        [Test]
+        public void Aged_Brie_Actually_Increases_In_Quality_The_Older_It_Gets()
+        {
+        }
+
+        [Test]
+        public void The_Quality_Of_An_Item_Is_Never_More_Than_50()
+        {
+        }
+
+        [Test]
+        public void Sulfuras_Will_Not_Decreases_In_Quality()
+        {
+        }
     }
 }
