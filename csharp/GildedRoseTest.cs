@@ -61,6 +61,14 @@ namespace csharp
         [Test]
         public void The_Quality_Of_An_Item_Is_Never_More_Than_50()
         {
+            IList<Item> Items = new List<Item> { new Item { Name = "Not Aged Brie", SellIn = 0, Quality = 1 } };
+            GildedRose app = new GildedRose(Items);
+            for (int i = 0; i < 50; i++)
+            {
+                // Here you can give each person a custom name based on a number
+                Items.Add(new Item { Name = "Not Aged Brie" + (i + 1), SellIn = 0, Quality = 0 });
+            }
+            app.UpdateQuality();
         }
 
         [Test]
