@@ -8,7 +8,7 @@ namespace csharp
     public class GildedRoseTest
     {
         [Test]
-        [TestCase(0, 0, "foo", "foo")]
+        [TestCase("foo", "foo")]
         public void foo(string name, string answer)
         {
             IList<Item> Items = new List<Item> { new Item { Name = name, SellIn = 0, Quality = 0 } };
@@ -67,25 +67,31 @@ namespace csharp
         }
 
         [Test]
+        [TestCase(0, 0, "Not Aged Brie", 0)]
+        [TestCase(0, 0, "Aged Brie", 2)]
         public void The_Quality_Of_An_item_Is_Never_Negative(int sellIn, int quality, string name, int answer)
         {
-            IList<Item> Items = new List<Item> { new Item { Name = "Not Aged Brie", SellIn = 0, Quality = 0 } };
+            IList<Item> Items = new List<Item> { new Item { Name = name, SellIn = sellIn, Quality = quality } };
             GildedRose app = new GildedRose(Items);
             app.UpdateQuality();
-            Assert.AreEqual(0, Items[0].Quality);
+            Assert.AreEqual(answer, Items[0].Quality);
         }
 
         [Test]
+        [TestCase(10, 0, "Aged Brie", 1)]
+        [TestCase(10, 10, "Aged Brie", 11)]
+        [TestCase(10, 0, "Not Aged Brie", 0)]
+        [TestCase(10, 10, "Not Aged Brie", 9)]
         public void Aged_Brie_Actually_Increases_In_Quality_The_Older_It_Gets(int sellIn, int quality, string name, int answer)
         {
-            IList<Item> Items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 10, Quality = 0 } };
+            IList<Item> Items = new List<Item> { new Item { Name = name, SellIn = sellIn, Quality = quality } };
             GildedRose app = new GildedRose(Items);
             app.UpdateQuality();
-            Assert.AreEqual(1, Items[0].Quality);
+            Assert.AreEqual(answer, Items[0].Quality);
         }
 
         [Test]
-        public void Aged_Brie_Actually_Increases_In_Quality_The_Older_It_Gets_SellIn_At_Zero(int sellIn, int quality, string name, int answer)
+        public void Aged_Brie_Actually_Increases_In_Quality_The_Older_It_Gets_SellIn_At_Zero()
         {
             IList<Item> Items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 0, Quality = 0 } };
             GildedRose app = new GildedRose(Items);
@@ -94,7 +100,7 @@ namespace csharp
         }
 
         [Test]
-        public void The_Quality_Of_An_Item_Is_Never_More_Than_50(int sellIn, int quality, string name, int answer)
+        public void The_Quality_Of_An_Item_Is_Never_More_Than_50()
         {
             IList<Item> Items = new List<Item> { new Item { Name = "Not Aged Brie", SellIn = 0, Quality = 1 } };
             GildedRose app = new GildedRose(Items);
@@ -107,7 +113,7 @@ namespace csharp
         }
 
         [Test]
-        public void Sulfuras_Will_Not_Decreases_In_Quality(int sellIn, int quality, string name, int answer)
+        public void Sulfuras_Will_Not_Decreases_In_Quality()
         {
             IList<Item> Items = new List<Item> { new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 10 } };
             GildedRose app = new GildedRose(Items);
@@ -127,6 +133,12 @@ namespace csharp
             app.UpdateQuality();
             Assert.AreEqual(answer, Items[0].Quality);
         } 
+
+        [Test]
+        public void Conjured_Items_Degrade_In_Quality_Twice_As_Fast_As_Normal_Items()
+        {
+
+        }
     }
 
 }
