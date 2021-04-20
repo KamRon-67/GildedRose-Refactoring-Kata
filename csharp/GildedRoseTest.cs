@@ -46,16 +46,37 @@ namespace csharp
         [Test]
         public void Once_The_Sell_By_Date_Has_Passed_Quality_Degrades_Twice_As_Fast()
         {
+            IList<Item> Items = new List<Item> { new Item { Name = "Not Aged Brie", SellIn = 0, Quality = 8} };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.AreEqual(6, Items[0].Quality);
         }
 
         [Test]
         public void The_Quality_Of_An_item_Is_Never_Negative()
         {
+            IList<Item> Items = new List<Item> { new Item { Name = "Not Aged Brie", SellIn = 0, Quality = 0 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.AreEqual(0, Items[0].Quality);
         }
 
         [Test]
         public void Aged_Brie_Actually_Increases_In_Quality_The_Older_It_Gets()
         {
+            IList<Item> Items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 10, Quality = 0 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.AreEqual(1, Items[0].Quality);
+        }
+
+        [Test]
+        public void Aged_Brie_Actually_Increases_In_Quality_The_Older_It_Gets_SellIn_At_Zero()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 0, Quality = 0 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.AreEqual(2, Items[0].Quality);
         }
 
         [Test]
@@ -74,6 +95,10 @@ namespace csharp
         [Test]
         public void Sulfuras_Will_Not_Decreases_In_Quality()
         {
+            IList<Item> Items = new List<Item> { new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 10 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.AreEqual(10, Items[0].Quality);
         }
     }
 }
