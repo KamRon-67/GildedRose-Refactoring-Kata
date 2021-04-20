@@ -100,5 +100,19 @@ namespace csharp
             app.UpdateQuality();
             Assert.AreEqual(10, Items[0].Quality);
         }
+
+        [Test]
+        [TestCase(10, 10, "Backstage passes to a TAFKAL80ETC concert", 12)]
+        [TestCase(5, 10, "Backstage passes to a TAFKAL80ETC concert", 13)]
+        [TestCase(0, 10, "Backstage passes to a TAFKAL80ETC concert", 0)]
+
+        public void Increases_In_Quality_As_Its_SellIn_Value_Approaches(int sellIn, int quality, string name, int answer) 
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = name, SellIn = sellIn, Quality = quality } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.AreEqual(answer, Items[0].Quality);
+        } 
     }
+
 }
